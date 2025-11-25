@@ -9,7 +9,7 @@
 
     <!-- Ocean floor -->
     <include>
-      <uri>model://ground_plane</uri>
+      <uri>/workspace/models/ground_plane</uri>
       <pose>0 0 -10 0 0 0</pose>
     </include>
 
@@ -40,13 +40,13 @@
     <!-- Add the existing tethys equipped underwater vehicle -->
     <include>
       <pose>2 0 -2 0 0 0</pose>
-      <uri>model://tethys_equipped</uri>
+      <uri>/workspace/models/tethys_equipped</uri>
     </include>
 
     <!-- Add the new underwater vehicle -->
     <include>
       <pose>-2 0 -2 0 0 0</pose>
-      <uri>model://underwater_vehicle</uri>
+      <uri>/workspace/models/underwater_vehicle</uri>
     </include>
 
     <!-- Light source for underwater visibility -->
