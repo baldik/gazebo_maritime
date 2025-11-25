@@ -38,12 +38,6 @@
       <uri>/home/baldik/gazebo_maritime/models/tethys_equipped</uri>
     </include>
 
-    <!-- Add the new underwater vehicle -->
-    <include>
-      <pose>-2 0 -2 0 0 0</pose>
-      <uri>/home/baldik/gazebo_maritime/models/underwater_vehicle</uri>
-    </include>
-
     <!-- Light source for underwater visibility -->
     <light type="point" name="underwater_light_1">
       <pose>0 0 -1 0 0 0</pose>

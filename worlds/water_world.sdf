@@ -23,7 +23,7 @@
     </plugin>
     <include>
       <pose>0 0 -1 0 0 0</pose>
-      <uri>/workspace/models/tethys_equipped</uri>
+      <uri>/home/baldik/gazebo_maritime/models/tethys_equipped</uri>
     </include>
   </world>
 </sdf>
