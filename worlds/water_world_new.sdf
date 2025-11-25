@@ -7,11 +7,6 @@
       <shadows>false</shadows>
     </scene>
 
-    <!-- Ocean floor -->
-    <include>
-      <uri>/workspace/models/ground_plane</uri>
-      <pose>0 0 -10 0 0 0</pose>
-    </include>
 
     <!-- Physics -->
     <physics name="1ms" type="ode">
@@ -40,13 +35,13 @@
     <!-- Add the existing tethys equipped underwater vehicle -->
     <include>
       <pose>2 0 -2 0 0 0</pose>
-      <uri>/workspace/models/tethys_equipped</uri>
+      <uri>/home/baldik/gazebo_maritime/models/tethys_equipped</uri>
     </include>
 
     <!-- Add the new underwater vehicle -->
     <include>
       <pose>-2 0 -2 0 0 0</pose>
-      <uri>/workspace/models/underwater_vehicle</uri>
+      <uri>/home/baldik/gazebo_maritime/models/underwater_vehicle</uri>
     </include>
 
     <!-- Light source for underwater visibility -->
