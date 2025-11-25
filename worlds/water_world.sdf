@@ -22,8 +22,8 @@
       <uniform_fluid_density>1000</uniform_fluid_density>
     </plugin>
     <include>
-      <pose>0 0 0 0 0 0</pose>
-      <uri>/home/baldik/gazebo_maritime/models/tethys_equipped</uri>
+      <pose>0 0 -1 0 0 0</pose>
+      <uri>model://tethys_equipped</uri>
     </include>
   </world>
 </sdf>

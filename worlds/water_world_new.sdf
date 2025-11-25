@@ -1,0 +1,75 @@
+<sdf version="1.6">
+  <world name="water_world">
+    <!-- Ocean environment settings -->
+    <scene>
+      <ambient>0.4 0.4 0.4</ambient>
+      <background>0.2 0.2 0.8</background>
+      <shadows>false</shadows>
+    </scene>
+
+    <!-- Ocean floor -->
+    <include>
+      <uri>model://ground_plane</uri>
+      <pose>0 0 -10 0 0 0</pose>
+    </include>
+
+    <!-- Physics -->
+    <physics name="1ms" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <!-- Essential plugins -->
+    <plugin
+      filename="libgazebo_ros_init.so"
+      name="gazebo_ros_init">
+    </plugin>
+    
+    <plugin
+      filename="libgazebo_ros_factory.so"
+      name="gazebo_ros_factory">
+    </plugin>
+
+    <!-- Buoyancy plugin for underwater physics -->
+    <plugin
+      filename="libBuoyancyPlugin.so"
+      name="buoyancy_plugin">
+      <uniform_fluid_density>1000</uniform_fluid_density>
+    </plugin>
+
+    <!-- Add the existing tethys equipped underwater vehicle -->
+    <include>
+      <pose>2 0 -2 0 0 0</pose>
+      <uri>model://tethys_equipped</uri>
+    </include>
+
+    <!-- Add the new underwater vehicle -->
+    <include>
+      <pose>-2 0 -2 0 0 0</pose>
+      <uri>model://underwater_vehicle</uri>
+    </include>
+
+    <!-- Light source for underwater visibility -->
+    <light type="point" name="underwater_light_1">
+      <pose>0 0 -1 0 0 0</pose>
+      <diffuse>0.3 0.3 0.5</diffuse>
+      <specular>0.1 0.1 0.1</specular>
+      <attenuation>
+        <range>20</range>
+        <linear>0.1</linear>
+        <quadratic>0.01</quadratic>
+      </attenuation>
+    </light>
+
+    <light type="point" name="underwater_light_2">
+      <pose>5 5 -3 0 0 0</pose>
+      <diffuse>0.2 0.2 0.4</diffuse>
+      <specular>0.1 0.1 0.1</specular>
+      <attenuation>
+        <range>15</range>
+        <linear>0.1</linear>
+        <quadratic>0.01</quadratic>
+      </attenuation>
+    </light>
+  </world>
+</sdf>
