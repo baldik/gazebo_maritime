@@ -1,0 +1,16 @@
+# Added mass parameters for Tethys underwater vehicle
+# These values represent the hydrodynamic added mass coefficients
+# Units: kg for mass terms, kg*m² for moment terms
+
+# Diagonal elements of added mass matrix
+Xu_dot: -10.0    # Added mass in surge (x-direction) due to surge motion
+Yv_dot: -50.0    # Added mass in sway (y-direction) due to sway motion  
+Zw_dot: -50.0    # Added mass in heave (z-direction) due to heave motion
+Kp_dot: -5.0     # Added mass in roll (around x-axis) due to roll motion
+Mq_dot: -20.0    # Added mass in pitch (around y-axis) due to pitch motion
+Nr_dot: -20.0    # Added mass in yaw (around z-axis) due to yaw motion
+
+# Off-diagonal elements (if needed)
+Xv_dot: 0.0      # Cross-coupling between surge and sway
+Xw_dot: 0.0      # Cross-coupling between surge and heave
+Yw_dot: 0.0      # Cross-coupling between sway and heave

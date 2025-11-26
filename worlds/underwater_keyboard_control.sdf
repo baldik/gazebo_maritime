@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="underwater_keyboard_control">
+    <physics name="default_physics" default="true" type="ode">
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>50</iters>
+          <sor>1.2</sor>
+        </solver>
+      </ode>
+    </physics>
+    
+    <scene>
+      <ambient>0.01 0.01 0.01 1.0</ambient>
+      <background>0.0 0.7 0.8</background>
+      <shadows>1</shadows>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+    </scene>
+
+    <!-- Global light source -->
+    <light type="directional" name="sun1">
+      <pose>50 0 150 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>.1 .1 .1 1</specular>
+      <direction>0.3 0.3 -1</direction>
+      <cast_shadows>false</cast_shadows>
+    </light>
+
+    <!-- Global light source -->
+    <light type="directional" name="sun_diffuse">
+      <pose>-50 0 -150 0 0 0</pose>
+      <diffuse>0.6 0.6 0.6 1</diffuse>
+      <specular>0 0 0 1</specular>
+      <direction>-0.3 -0.3 -1</direction>
+      <cast_shadows>false</cast_shadows>
+    </light>
+
+    <!-- Add underwater plugins -->
+    <plugin
+      filename="gz-sim-buoyancy-system"
+      name="gz::sim::systems::Buoyancy">
+      <uniform_fluid_density>1000</uniform_fluid_density>
+    </plugin>
+    
+    <plugin
+      filename="gz-sim-fluid-drag-system"
+      name="gz::sim::systems::AddedMass">
+      <link_name>base_link</link_name>
+      <param_file>/workspace/models/tethys/added_mass_params.yaml</param_file>
+    </plugin>
+    
+    <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+
+    <!-- Model of Tethys with keyboard control -->
+    <model name="tethys">
+      <include>
+        <uri>/workspace/models/tethys_keyboard_control</uri>
+      </include>
+      <pose>0 0 -2 0 0 0</pose>
+    </model>
+
+    <gui fullscreen='0'>
+      <plugin filename="GzScene3D" name="3D View">
+        <gz-gui>
+          <title>3D View</title>
+          <property type="bool" key="showTitleBar">false</property>
+          <property type="string" key="state">docked</property>
+        </gz-gui>
+        <engine>ogre2</engine>
+        <scene>scene</scene>
+        <ambient_light>0.4 0.4 0.4</ambient_light>
+        <background_color>0.8 0.8 0.8</background_color>
+        <camera_pose>5 -5 3 0 0.37 2.8</camera_pose>
+      </plugin>
+    </gui>
+  </world>
+</sdf>

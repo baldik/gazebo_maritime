@@ -2,7 +2,7 @@
 <sdf version="1.9">
   <model name="tethys">
     <include merge="true">
-      <uri>/home/baldik/gazebo_maritime/models/tethys</uri>
+      <uri>/workspace/models/tethys</uri>
     </include>
 
     <!-- Hydrodynamic system-->
