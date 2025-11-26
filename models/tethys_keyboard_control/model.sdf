@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <sdf version="1.9">
   <model name="tethys">
-    <!-- Body -->
     <link name="base_link">
       <inertial>
         <mass>147.8671</mass>
