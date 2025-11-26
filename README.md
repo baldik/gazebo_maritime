@@ -1,57 +1,115 @@
-# Tethys Underwater Vehicle with Keyboard Control
+# Tethys Underwater Vehicle Keyboard Control
 
-This project provides keyboard control for the Tethys underwater vehicle in a simulated underwater environment.
+This project implements keyboard control for the Tethys underwater vehicle in a simulated underwater environment using Gazebo.
+
+## Overview
+
+The project includes:
+- A modified Tethys model with underwater dynamics
+- An underwater world simulation
+- Keyboard control interface for navigation
+- Proper hydrodynamic modeling using damping instead of unavailable fluid drag systems
 
 ## Components
 
-1. **Model**: `/workspace/models/tethys_keyboard_control/`
-   - Enhanced Tethys model with hydrodynamics, thruster, and control systems
-   - Includes joint controllers for horizontal and vertical fins
-   - Ready for velocity command input
+### Model: `tethys_keyboard_control`
+- Based on the original Tethys ROV model
+- Includes thruster systems for movement
+- Uses linear and angular damping to simulate underwater resistance
+- Includes fins for directional control
 
-2. **World**: `/workspace/worlds/underwater_keyboard_control.sdf`
-   - Underwater environment with buoyancy simulation
-   - Lighting setup for underwater visibility
-   - Includes the tethys model positioned at start location
+### World: `underwater_keyboard_control.sdf`
+- Underwater environment with proper physics
+- Buoyancy system for realistic underwater behavior
+- Appropriate visual settings for underwater scene
 
-3. **Keyboard Control Script**: `/workspace/keyboard_control.py`
-   - Python script for keyboard input handling
-   - Maps keyboard keys to velocity commands
-   - Publishes commands to `/model/tethys/cmd_vel` topic
+### Control: `keyboard_control.py`
+- Keyboard interface for controlling the vehicle
+- W/S: Move forward/backward
+- A/D: Move left/right
+- Q/E: Move up/down
+- Arrow keys: Rotate (pitch/yaw)
+- Space: Stop movement
+- C: Change speed
+
+## Installation Requirements
+
+To run this project, you need to have Gazebo Garden installed:
+
+```bash
+# Install Gazebo Garden
+curl -sSf https://get.gazebosim.org | sh
+
+# Install additional dependencies
+sudo apt update
+sudo apt install python3-ros-foxy-geometry-msgs python3-ros-foxy-rclpy
+```
 
 ## Usage
 
-1. Start the Gazebo simulation with the underwater world:
+1. Clone or copy this project to your workspace
+2. Set up environment variables:
    ```bash
-   gz sim /workspace/worlds/underwater_keyboard_control.sdf
+   export GZ_SIM_RESOURCE_PATH="${GZ_SIM_RESOURCE_PATH}:/path/to/workspace/models:/path/to/workspace/worlds"
+   ```
+3. Launch the simulation:
+   ```bash
+   gz sim worlds/underwater_keyboard_control.sdf
+   ```
+4. In another terminal, run the keyboard control:
+   ```bash
+   python3 keyboard_control.py
    ```
 
-2. In another terminal, run the keyboard control script:
-   ```bash
-   python3 /workspace/keyboard_control.py
-   ```
+Alternatively, use the provided script:
+```bash
+./run_simulation.sh
+```
 
 ## Controls
 
-- `W/S`: Move forward/backward
-- `A/D`: Move left/right
-- `Q/E`: Move down/up
-- Arrow keys: Rotate the vehicle
-- `Space`: Stop movement
-- `C`: Change speed
+- `W` / `S`: Move forward / backward
+- `A` / `D`: Move left / right  
+- `Q` / `E`: Move down / up
+- Arrow Up / Down: Pitch up / down
+- Arrow Left / Right: Yaw left / right
+- `Space`: Stop all movement
+- `C`: Toggle speed (1.0x / 2.0x)
+- `Ctrl+C`: Quit the control program
 
-## Notes
+## Implementation Details
 
-The model uses ROS 2 topics for communication:
-- Command topic: `/model/tethys/cmd_vel`
-- Odometry topic: `/model/tethys/odometry`
+The model uses:
+- Linear damping (10.0) and angular damping (5.0) to simulate underwater resistance
+- Thruster system for propulsion
+- Buoyancy system for realistic underwater physics
+- Joint position controllers for fin control
+- Velocity control system for receiving commands
 
-The actual plugin names in the SDF file may need to be adjusted based on the available Gazebo plugins in your system. Common alternatives to `gz-sim-velocity-control-system` include:
-- `gz-sim-velocity-controller-system`
-- `gz-sim-ackermann-steering-system`
-- Custom-built control plugins
+The system was designed to work without the `gz-sim-fluid-drag-system` plugin that might not be available in all installations, using simpler damping parameters instead.
 
-If the simulation doesn't work, check available plugins with:
-```bash
-find /usr -name "*.so" -path "*/lib/*" | grep -i gz
+## Troubleshooting
+
+- If you get "plugin not found" errors, make sure Gazebo Garden is properly installed
+- Ensure all environment variables are set correctly
+- Check that the model and world files are in the correct directories
+- Make sure the Python script has the required dependencies
+
+## Files Structure
+
 ```
+/workspace/
+├── models/
+│   └── tethys_keyboard_control/
+│       ├── model.config
+│       └── model.sdf
+├── worlds/
+│   └── underwater_keyboard_control.sdf
+├── keyboard_control.py
+├── run_simulation.sh
+└── README.md
+```
+
+# Gazebo Maritime
+
+This repository contains various models, worlds, and plugins for simulating maritime vehicles in Gazebo.

@@ -43,18 +43,14 @@
       <cast_shadows>false</cast_shadows>
     </light>
 
-    <!-- Add underwater plugins -->
+    <!-- Add underwater environment -->
+    <gravity>0 0 -9.8</gravity>
+    
+    <!-- Buoyancy system -->
     <plugin
       filename="gz-sim-buoyancy-system"
       name="gz::sim::systems::Buoyancy">
       <uniform_fluid_density>1000</uniform_fluid_density>
-    </plugin>
-    
-    <plugin
-      filename="gz-sim-fluid-drag-system"
-      name="gz::sim::systems::AddedMass">
-      <link_name>base_link</link_name>
-      <param_file>/workspace/models/tethys/added_mass_params.yaml</param_file>
     </plugin>
     
     <plugin

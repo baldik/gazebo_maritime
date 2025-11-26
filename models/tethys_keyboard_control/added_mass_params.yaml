@@ -1,0 +1,31 @@
+# Added mass parameters for Tethys underwater vehicle
+# These parameters represent the additional mass effects due to water movement around the vehicle
+
+# Added mass coefficients (symmetric matrix)
+# Format: [X, Y, Z, Rx, Ry, Rz] where X, Y, Z are linear directions and Rx, Ry, Rz are rotational
+# Values in kg and kg*m^2 units
+
+# Diagonal elements (mass and moment of inertia)
+x_x: 10.0
+y_y: 10.0
+z_z: 15.0
+rx_rx: 0.5
+ry_ry: 0.5
+rz_rz: 0.3
+
+# Off-diagonal elements (usually smaller or zero)
+x_y: 0.0
+x_z: 0.0
+x_rx: 0.0
+x_ry: 0.0
+x_rz: 0.0
+y_z: 0.0
+y_rx: 0.0
+y_ry: 0.0
+y_rz: 0.0
+z_rx: 0.0
+z_ry: 0.0
+z_rz: 0.0
+rx_ry: 0.0
+rx_rz: 0.0
+ry_rz: 0.0
