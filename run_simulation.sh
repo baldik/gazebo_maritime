@@ -15,10 +15,10 @@ echo "Press Ctrl+C in the Gazebo window to stop the simulation."
 echo ""
 
 # Start Gazebo simulation in background
-gz sim /workspace/worlds/underwater_keyboard_control.sdf &
+gz sim /home/baldik/gazebo_maritime/worlds/underwater_keyboard_control.sdf &
 
 # Wait a moment for Gazebo to start
 sleep 5
 
 # Start keyboard control
-python3 /workspace/keyboard_control.py
+python3 /home/baldik/gazebo_maritime/keyboard_control.py

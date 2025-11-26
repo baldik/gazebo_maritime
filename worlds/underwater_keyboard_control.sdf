@@ -54,6 +54,13 @@
     </plugin>
     
     <plugin
+      filename="gz-sim-fluid-drag-system"
+      name="gz::sim::systems::AddedMass">
+      <link_name>base_link</link_name>
+      <param_file>/workspace/models/tethys/added_mass_params.yaml</param_file>
+    </plugin>
+    
+    <plugin
       filename="gz-sim-physics-system"
       name="gz::sim::systems::Physics">
     </plugin>
@@ -61,7 +68,7 @@
     <!-- Model of Tethys with keyboard control -->
     <model name="tethys">
       <include>
-        <uri>/workspace/models/tethys_keyboard_control</uri>
+        <uri>/home/baldik/gazebo_maritime/models/tethys_keyboard_control</uri>
       </include>
       <pose>0 0 -2 0 0 0</pose>
     </model>
